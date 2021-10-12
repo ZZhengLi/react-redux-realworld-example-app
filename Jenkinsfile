@@ -1,10 +1,9 @@
 pipeline {
     agent { 
         docker { 
-            image  'ubuntu'
-                }
-            }
+            image  'ubuntu'          
         }
+    }
     environment { 
         CI = 'true'
     }
