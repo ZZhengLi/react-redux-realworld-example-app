@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-          image 'node:lts-buster-slim'
+            image 'node:lts-buster-slim'
         }
     }
     environment { 
@@ -15,13 +15,10 @@ pipeline {
         }
 
         stage('Deploy') {
-            when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
-            }
             steps {
-                sh 'npm start'
+                sh 'deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh 'kill.sh'
             }
         }
     }
