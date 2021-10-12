@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
           image 'node:lts-buster-slim'
-          args '-p 3000:3000'
+          args '-p 4100:4100'
         }
     }
     environment { 
@@ -22,7 +22,9 @@ pipeline {
               }
             }
             steps {
-                sh 'npm start'
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finish using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
             }
         }
     }
