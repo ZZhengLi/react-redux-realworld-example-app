@@ -1,13 +1,17 @@
 pipeline {
-    agent any
+    agent { 
+        docker { 
+            image  'ubuntu'
+                }
+            }
+        }
     environment { 
         CI = 'true'
     }
     stages{
         stage('Build') {
             steps {
-                sh 'make' 
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
+                sh 'npm install'
             }
         }
 
@@ -18,7 +22,7 @@ pipeline {
               }
             }
             steps {
-                sh 'make publish'
+                sh 'npm start'
             }
         }
     }
