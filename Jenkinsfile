@@ -20,6 +20,4 @@ pipeline {
                 sh 'make publish'
             }
         }
-    }
-    }
 }
