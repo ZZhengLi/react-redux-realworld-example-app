@@ -1,7 +1,7 @@
 pipeline {
-    agent { 
-        docker { 
-            image  'ubuntu'          
+    agent {
+        docker {
+          image 'node:10.11.0-alpine'
         }
     }
     environment { 
